@@ -13,7 +13,7 @@ def get_time():
         data = json.load(file)
         time = data['time']
         people = data['people']
-        return jsonify({'time': time})
+        return jsonify({'time': time, 'people': people})
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
