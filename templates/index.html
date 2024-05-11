@@ -4,10 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AJAX to Flask</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        function fetchTime() {
+          $.ajax({
+            url: "/get_time",
+            type: "get",
+            success: function (response) {
+              $("#time").html(response.time);
+            },
+            error: function (xhr) {
+              // Произошла ошибка при запросе
+            },
+          });
+        }
+        fetchTime(); // Вызовите функцию при загрузке страницы
+        setInterval(fetchTime, 1000); // И обновляйте каждую секунду
+      });
+    </script>
+    
   </head>
   <body>
     <h1>Тут должно обновляться время!</h1>
     <h3>Без перезагрузки страницы.</h3>
-    {{time}}
+    <div id="time">{{time_now}}</div>
   </body>
 </html>
